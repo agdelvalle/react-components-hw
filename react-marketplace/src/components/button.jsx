@@ -1,17 +1,30 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
+import { render } from "react-dom";
 
-export const Button = ({ type = "button", variant, ...props }) => (
-  <button
+export const Button = ({ type = "button", variant, ...props }) => {
+  const className = cn(
+    "inline-flex justify-center items-center py-2 px-4 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500",
+     variant && classByVariant[variant],
+    props.className
+  );
+
+  if(render){
+    return render({className, ...props}); 
+  }
+  
+  return <button
     type={type}
     {...props}
-    className={cn(
-      "inline-flex justify-center items-center py-2 px-4 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500",
-      variant && classByVariant[variant],
-      props.className
-    )}
+    // className={cn(
+    //   "inline-flex justify-center items-center py-2 px-4 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500",
+    //   variant && classByVariant[variant],
+    //   props.className
+    // )}
+    className={className}
   />
-);
+
+};
 
 const classByVariant = {
   primary: "border-transparent text-white bg-pink-600 hover:bg-pink-700",
@@ -20,4 +33,5 @@ const classByVariant = {
 
 Button.propTypes = {
   variant: PropTypes.oneOf(["primary", "outline"]),
+  render: PropTypes.func
 };
