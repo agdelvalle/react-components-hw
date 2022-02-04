@@ -1,8 +1,7 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
-import { render } from "react-dom";
 
-export const Button = ({ type = "button", variant, ...props }) => {
+export const Button = ({ type = "button", variant, render, ...props }) => {
   const className = cn(
     "inline-flex justify-center items-center py-2 px-4 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500",
      variant && classByVariant[variant],
@@ -33,5 +32,5 @@ const classByVariant = {
 
 Button.propTypes = {
   variant: PropTypes.oneOf(["primary", "outline"]),
-  render: PropTypes.func
+  render: PropTypes.func,
 };
